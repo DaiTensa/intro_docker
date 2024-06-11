@@ -14,7 +14,7 @@ def get_list():
     if not liste_courses:
         return {"message": "La liste est vide"}
     else:
-        return {"content" : liste_courses}
+        return liste_courses
     
 
 @app.post('/liste')
@@ -31,8 +31,12 @@ def add_to_list(element:str, quantity:int, unit:str = ""):
 
 @app.delete('/liste')
 def remove_from_liste(element:str):
-    del liste_courses[element]
-    return liste_courses
+    if element in liste_courses:
+        del liste_courses[element]
+        return liste_courses
+    else:
+        raise HTTPException(status_code=404, detail="Élément non trouvé dans la liste de courses")
+    
 
 
 @app.delete('/liste/clear')

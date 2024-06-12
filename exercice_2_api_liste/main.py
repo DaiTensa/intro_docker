@@ -9,7 +9,7 @@ def index():
     return {"message": "bonjour bienvenu sur l’API liste de course"}
 
 
-@app.get('/liste')
+@app.get('/get_list')
 def get_list():
     if not liste_courses:
         return {"message": "La liste est vide"}
@@ -17,7 +17,7 @@ def get_list():
         return liste_courses
     
 
-@app.post('/liste')
+@app.post('/add_to_list')
 def add_to_list(element:str, quantity:int, unit:str = ""):
     quantity_unit = {}
     if element in liste_courses:
@@ -29,7 +29,7 @@ def add_to_list(element:str, quantity:int, unit:str = ""):
     return liste_courses
 
 
-@app.delete('/liste')
+@app.delete('/remove_from_list')
 def remove_from_liste(element:str):
     if element in liste_courses:
         del liste_courses[element]
@@ -39,7 +39,7 @@ def remove_from_liste(element:str):
     
 
 
-@app.delete('/liste/clear')
+@app.delete('/clean_list')
 def clear_liste():
     liste_courses.clear()
     return liste_courses

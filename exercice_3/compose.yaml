@@ -1,0 +1,13 @@
+version: '3'
+services:
+  api_course:
+    build: .
+    ports:
+      - "8000:8000"
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /app
+        - action: rebuild
+          path: .

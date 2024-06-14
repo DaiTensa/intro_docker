@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 import schemas, models, crud
 from database import Base, engine, SessionLocal
 
-Base.metadata.drop_all(engine)
+# Base.metadata.drop_all(engine)
 Base.metadata.create_all(engine)
 
 app = FastAPI()
@@ -23,12 +23,11 @@ def get_db():
 
 @app.get("/")
 def index():
-    return {"message": "bonjour bienvenue sur l’API liste de course change"}
+    return {"message": "bonjour bienvenue sur l’API liste de course"}
 
-@app.get("/home")
-def home():
-    return {"message": "Bonjour, bienvenue à la maison changement sur le local"}
-
+# @app.get("/home")
+# def home():
+#     return {"message": "Bonjour, bienvenue à la maison changement sur le local"}
 
 @app.post("/insert_element", response_model= schemas.Item)
 def insert_new_element(item:schemas.Item, db:Session = Depends(get_db)):

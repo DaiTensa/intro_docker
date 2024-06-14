@@ -1,6 +1,9 @@
 from sqlalchemy.orm import Session
 import models, schemas
 
+
+
+
 def get_element(db: Session, element: str):
     return db.query(models.Courses).filter(models.Courses.Element == element).first()
 
